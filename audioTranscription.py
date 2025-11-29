@@ -5,6 +5,7 @@ import tkinter as tk
 from tkinter import scrolledtext
 from vosk import Model, KaldiRecognizer
 import pyaudio
+import os
 
 # -----------------------
 # GLOBALS
@@ -21,7 +22,12 @@ last_update_time = 0
 # PRELOAD MODEL (important!)
 # -----------------------
 print("Loading Vosk model... this can take a moment.")
-model = Model("path") #CHANGE TO WHERE THE PATH OF vosk-small-model-en-us-0.15 IS 
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = os.path.join(BASE_DIR, "vosk-model-small-en-us-0.15")
+
+
+model = Model(MODEL_PATH)
 recognizer = KaldiRecognizer(model, 16000)
 print("Model loaded.")
 
